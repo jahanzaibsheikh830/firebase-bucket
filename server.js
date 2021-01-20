@@ -1,5 +1,5 @@
 var SERVER_SECRET = process.env.SECRET || "1234";
-var SERVICE_ACCOUNT = process.env.SERVICE_ACCOUNT
+var SERVICE_ACCOUNT = JSON.parse(process.env.SERVICE_ACCOUNT)
 const PORT = process.env.PORT || 5000;
 
 var express = require("express");

@@ -33,13 +33,13 @@ var upload = multer({ storage: storage })
 
 const admin = require("firebase-admin");
 // https://firebase.google.com/docs/storage/admin/start
-var serviceAccount = JSON.parse( process.env.serviceAccount);
+var SERVICE_ACCOUNT = JSON.parse(process.env.SERVICE_ACCOUNT)
 
 admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount),
+    credential: admin.credential.cert(SERVICE_ACCOUNT),
     databaseURL: process.env.databaseURL
 });
-const bucket = admin.storage().bucket(process.env.bucket);
+const bucket = admin.storage().bucket("gs://twitter-profile-pics.appspot.com");
 
 app.use(bodyParser.json());
 app.use(cookieParser());

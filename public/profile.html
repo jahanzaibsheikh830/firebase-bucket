@@ -23,7 +23,7 @@
 
 </head>
 
-<body onload="getProfile(); getTweets(); getUsers()">
+<body onload="getProfile(); getTweets();">
     <header class="bg-primary sticky-top">
         <div class="container">
             <div class="row">
@@ -67,7 +67,8 @@
                 <div class="row justify-content-center">
                     <div class="col-md-3">
                         <form onsubmit="return upload()">
-                            <input required type="file" id="fileInput">
+                            <input required type="file" id="fileInput" onchange="previewFile()">
+                            <img src="" height="200" style="border-radius: 50%;" id="profilePic">
                             <button class="btn btn-outline-primary" type="submit">upload</button>
                         </form>
                     </div>
@@ -129,7 +130,7 @@
             </div>
         </div>
     </section>
-    <img src="./header.jpg" alt="" id="profile">
+   
 
     <script src="app.js"></script>
     <!-- <script>

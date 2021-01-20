@@ -66,8 +66,9 @@ function getProfile() {
         document.getElementById('pName').innerHTML = response.data.profile.name
         let src = response.data.profile.profilePic
         console.log(src)
-        document.getElementById('profile').src = src
+        document.getElementById('profilePic').src = src
         sessionStorage.setItem('email',response.data.profile.email)
+        // console.log(JSON.parse(localStorage.getItem('aja')))
     }, (error) => {
         location.href = "./login.html"
     });
@@ -264,11 +265,14 @@ function upload() {
         method: 'post',
         url: "http://localhost:5000/upload",
         data: formData,
-        headers: { 'Content-Type': 'multipart/form-data' }
+        headers: { 'Content-Type': 'multipart/form-data'}
     })
         .then(res => {
-            // var userData = JSON.parse(.data)
-            console.log(`upload Success` + res);
+            var userData = res
+            // userData = JSON.parse(userData)
+            // var jsonParse = JSON.parse(userData)
+            console.log(`upload Success`+ userData.toString());
+            // localStorage.setItem('aja', JSON.stringify(res))
         })
         .catch(err => {
             console.log(err);
@@ -276,4 +280,18 @@ function upload() {
 
     return false; 
 
+}
+function previewFile() {
+    const preview = document.querySelector('img');
+    const file = document.querySelector('input[type=file]').files[0];
+    const reader = new FileReader();
+
+    reader.addEventListener("load", function () {
+        // convert image file to base64 string
+        preview.src = reader.result;
+    }, false);
+
+    if (file) {
+        reader.readAsDataURL(file);
+    }
 }

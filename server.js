@@ -197,11 +197,9 @@ app.post("/upload", upload.any(), (req, res, next) => {  // never use upload.sin
                         userModel.findOne({email: req.body.email},(err,user)=>{
                             if (!err) {
                                 user.update({ profilePic: urlData[0]}, {}, function (err, data) {
-                                    console.log(data)
+                                    // console.log(user)
                                     res.send({
-                                        data:data,
-                                        status: 200,
-                                        message: "done"
+                                        pic:user.profilePic
                                     });
                                 })
                             }
@@ -217,7 +215,7 @@ app.post("/upload", upload.any(), (req, res, next) => {  // never use upload.sin
                         } catch (err) {
                             console.error(err)
                         }
-                        res.send('ok');
+                        // res.send();
                     }
                 })
             }else{

@@ -63,8 +63,10 @@ function getProfile() {
         url: url + '/profile',
         credentials: 'include',
     }).then((response) => {
-        console.log(response.data.profile)
         document.getElementById('pName').innerHTML = response.data.profile.name
+        let src = response.data.profile.profilePic
+        console.log(src)
+        document.getElementById('profile').src = src
         sessionStorage.setItem('email',response.data.profile.email)
     }, (error) => {
         location.href = "./login.html"

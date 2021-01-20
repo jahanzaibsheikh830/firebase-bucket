@@ -97,7 +97,7 @@ app.get("/profile", (req, res, next) => {
 
     console.log(req.body)
 
-    userModel.findById(req.body.jToken.id, 'name email phone gender createdOn',
+    userModel.findById(req.body.jToken.id, 'name email phone gender createdOn profilePic',
         function (err, doc) {
             if (!err) {
                 res.send({

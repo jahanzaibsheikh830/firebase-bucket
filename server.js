@@ -1,5 +1,5 @@
 var SERVER_SECRET = process.env.SECRET || "1234";
-var SERVICE_ACCOUNT = JSON.parse(process.env.SERVICE_ACCOUNT)
+// var SERVICE_ACCOUNT = JSON.parse(process.env.SERVICE_ACCOUNT)
 const PORT = process.env.PORT || 5000;
 
 var express = require("express");
@@ -33,13 +33,13 @@ var upload = multer({ storage: storage })
 
 const admin = require("firebase-admin");
 // https://firebase.google.com/docs/storage/admin/start
-
+var serviceAccount = JSON.parse(process.env.serviceAccount);
 
 admin.initializeApp({
-    credential: admin.credential.cert(SERVICE_ACCOUNT),
-    databaseURL: "https://twitter-profile-pics-default-rtdb.firebaseio.com/"
+    credential: admin.credential.cert(serviceAccount),
+    databaseURL: process.env.databaseURL
 });
-const bucket = admin.storage().bucket("gs://twitter-profile-pics.appspot.com/");
+const bucket = admin.storage().bucket(process.env.bucket);
 
 app.use(bodyParser.json());
 app.use(cookieParser());

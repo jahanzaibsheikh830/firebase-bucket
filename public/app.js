@@ -263,7 +263,7 @@ function upload() {
 
     axios({
         method: 'post',
-        url: "http://localhost:5000/upload",
+        url: url+"/upload",
         data: formData,
         headers: { 'Content-Type': 'multipart/form-data'}
     })
